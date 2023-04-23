@@ -4,9 +4,9 @@
     "type": "library",
     "license": "MIT",
     "autoload": {
-        "psr-4": {
-            "Withinboredom\\Nameof\\": "src/"
-        }
+        "files": [
+            "src/functions.php"
+        ]
     },
     "authors": [
         {
@@ -14,5 +14,12 @@
             "email": "landers.robert@gmail.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "pestphp/pest": "^2.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
 }
