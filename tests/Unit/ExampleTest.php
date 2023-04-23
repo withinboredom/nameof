@@ -51,3 +51,16 @@ it('handles even more spaces ...', function() {
     $a = Test::A;
     expect(nameof   ( $a))->toBe('a');
 });
+
+it('allows using an enum as a key', function() {
+    $arr = [];
+    $arr[nameof(Test::A)] = 'test';
+    $arr[nameof(Test::B)] = 'b';
+    expect($arr['Test::A'])->toBe('test');
+    expect($arr['Test::B'])->toBe('b');
+});
+
+it('allows shenanigans', function () {
+    $var = $bar = 1;
+    expect(nameof(compact('var', 'bar')))->toBe('compact(\'var\', \'bar\')');
+});
