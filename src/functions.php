@@ -38,7 +38,7 @@ function nameof($var): string
     $match = ltrim($match, '$');
 
     // remove parens
-    $match = rtrim($match, '()');
+    $match = str_replace(['(', ')', '...'], '', $match);
 
     // strip the -> if it exists
     $match = substr(strstr($match, '->'), 2) ?: $match;

@@ -9,7 +9,7 @@ enum Foo {
 }
 
 $arr = [];
-$arr[nameof(Foo::Bar)] = 1;
+$arr[nameof(Foo::Bar)] = 1; // resolves to 'Bar'
 ```
 
 For compact:
@@ -34,17 +34,14 @@ use this for enum keys, and other places where you want to use the name of a var
 composer require withinboredom/nameof
 ```
 
-## Warning
+## Example output
 
-There may be performance issues with this library since it uses `debug_backtrace` and reads the original source file to
-extract the variable name. This is not a problem for most use cases, but if you are using this in a performance critical
-path, you may want to consider a different approach.
-
-Note that this library will take virtually anything as a variable name, so you can give it things that make no sense:
+Here are some examples and their output, note that no error will be thrown if you pass it weird things because it isn't
+doing any parsing to make sure you are only passing sensible things.
 
 ```php
 echo nameof(1); // 1
-echo nameof($myCallback()); // myCallback()
-echo nameof($x->prop); // x->prop
-echo nameof($x->prop->fun()) // x->prop->fun()
+echo nameof($myCallback(...)); // myCallback
+echo nameof($x->prop); // prop
+echo nameof($x->prop->fun(...)) // fun
 ```

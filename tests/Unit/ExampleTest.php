@@ -32,6 +32,10 @@ it('gets the name of function call', function() {
     expect(nameof(Test::A->thing()))->toBe('thing');
 });
 
+it('gets the name of a function', function() {
+    expect(nameof(strstr(...)))->toBe('strstr');
+});
+
 it('gets the name of a variable with a call', function () {
     $a = Test::A;
     expect(nameof($a->thing()))->toBe('thing');
@@ -62,5 +66,5 @@ it('allows using an enum as a key', function() {
 
 it('allows shenanigans', function () {
     $var = $bar = 1;
-    expect(nameof(compact('var', 'bar')))->toBe('compact(\'var\', \'bar\'');
+    expect(nameof(compact('var', 'bar')))->toBe('compact\'var\', \'bar\'');
 });
