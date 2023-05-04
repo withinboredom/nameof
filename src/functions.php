@@ -30,9 +30,21 @@ function nameof($var): string
 
     // get the variable name
     preg_match('/nameof\s*\((.*?)\)/', $line, $matches);
-    if (str_contains($matches[1], '(')) {
-        $matches[1] .= ')';
-    }
 
-    return $cache[$key] = trim($matches[1], '$ ');
+    // remove whitespace
+    $match = trim($matches[1]);
+
+    // remove the $ if it exists
+    $match = ltrim($match, '$');
+
+    // remove parens
+    $match = rtrim($match, '()');
+
+    // strip the -> if it exists
+    $match = substr(strstr($match, '->'), 2) ?: $match;
+
+    // strip the :: if it exists
+    $match = substr(strstr($match, '::'), 2) ?: $match;
+
+    return $cache[$key] = $match;
 }

@@ -25,16 +25,16 @@ enum Test {
 }
 
 it('gets the name of an enum', function() {
-    expect(nameof(Test::A))->toBe('Test::A');
+    expect(nameof(Test::A))->toBe('A');
 });
 
 it('gets the name of function call', function() {
-    expect(nameof(Test::A->thing()))->toBe('Test::A->thing()');
+    expect(nameof(Test::A->thing()))->toBe('thing');
 });
 
 it('gets the name of a variable with a call', function () {
     $a = Test::A;
-    expect(nameof($a->thing()))->toBe('a->thing()');
+    expect(nameof($a->thing()))->toBe('thing');
 });
 
 it('fails when there are two calls to nameof on the same line', function() {
@@ -56,11 +56,11 @@ it('allows using an enum as a key', function() {
     $arr = [];
     $arr[nameof(Test::A)] = 'test';
     $arr[nameof(Test::B)] = 'b';
-    expect($arr['Test::A'])->toBe('test');
-    expect($arr['Test::B'])->toBe('b');
+    expect($arr['A'])->toBe('test');
+    expect($arr['B'])->toBe('b');
 });
 
 it('allows shenanigans', function () {
     $var = $bar = 1;
-    expect(nameof(compact('var', 'bar')))->toBe('compact(\'var\', \'bar\')');
+    expect(nameof(compact('var', 'bar')))->toBe('compact(\'var\', \'bar\'');
 });
